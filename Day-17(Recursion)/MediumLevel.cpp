@@ -61,9 +61,28 @@ void printSubseqSum(int arr[], int n, int i, vector<int> &subseq, int K)
     //do not include
     printSubseqSum(arr, n, i+1, subseq, K);
 }
+
+//Problem 3: Count the no. of subsequences whose sum is equal to K
+int countSubSeqSum(int arr[], int n, int i, int K)
+{
+    //base case
+    if(i>=n)
+    {
+        if(K==0)
+        {
+            return 1;
+        }
+        return 0;
+    }
+
+    //recursive call and small work
+    int l = countSubSeqSum(arr, n, i+1, K-arr[i]);
+    int r = countSubSeqSum(arr, n, i+1, K);
+    return l+r;
+}
 int main()
 {
-    int arr[4] = {1, 2, 3, 4};
+    int arr[7] = {1, 2, 3, 4, 5, 6, 7};
     vector<int> subseq;
-    printSubseqSum(arr, 4, 0, subseq, 3);
+    cout<<countSubSeqSum(arr, 7, 0, 8)<<endl;
 }
