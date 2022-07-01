@@ -29,9 +29,41 @@ void printSubseq(int i, vector<int> &subseq, int n, int arr[])
     printSubseq(i+1, subseq, n, arr);
 
 }
+
+
+//Problem 2- Print all the subsequences whose sum is equal to K of the given array
+void printSubseqSum(int arr[], int n, int i, vector<int> &subseq, int K)
+{
+    //base case
+    if(i>=n)
+    {
+        if(K==0)
+        {
+            //print the subseq
+            for(auto it : subseq)
+            {
+                cout<<it<<" ";
+            }
+            if(!subseq.size()) cout<<"[]";
+            cout<<endl;
+        }
+        return;
+    }
+
+    //recursive call and small work
+
+    //include
+    subseq.push_back(arr[i]);
+    printSubseqSum(arr, n, i+1, subseq, K-arr[i]);
+    subseq.pop_back();
+
+
+    //do not include
+    printSubseqSum(arr, n, i+1, subseq, K);
+}
 int main()
 {
-    int arr[3] = {1, 2, 3};
+    int arr[4] = {1, 2, 3, 4};
     vector<int> subseq;
-    printSubseq(0, subseq, 3, arr);
+    printSubseqSum(arr, 4, 0, subseq, 3);
 }
