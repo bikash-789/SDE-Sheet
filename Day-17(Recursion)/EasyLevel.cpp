@@ -102,23 +102,38 @@ bool isPalindrome(string s, int l, int r)
 
 }
 
+//Problem 8
+int findNthFib(int n)
+{
+    //base case
+    if(n==0 || n==1) return n;
+
+    //recursive call
+    return findNthFib(n-1) + findNthFib(n-2);
+}
+
+
 int main()
 {
-
+    
     /*
-
+    problem: 1
     string name="Bikash Chauhan";
     printName(10, name);
 
+    problem: 2
     printNum(5);
 
+    problem: 3
     printNumRev(5);
 
+    problem: 4
     cout<<sumOfFirstN(5)<<endl;
 
+    problem: 5
     cout<<fact(5)<<endl;
 
-
+    problem: 6
     int n;
     cin>>n;
     int arr[n];
@@ -133,13 +148,18 @@ int main()
         cout<<arr[i]<<" ";
     }
 
-
+    problem: 7
     string s;
     cin>>s;
     int n = s.length();
     cout<<isPalindrome(s, 0, n-1)<<endl;
     
+    problem: 8
+    int n;
+    cin>>n;
+    cout<<findNthFib(n)<<endl;
     */
    
    
+
 }
