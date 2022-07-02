@@ -80,9 +80,40 @@ int countSubSeqSum(int arr[], int n, int i, int K)
     int r = countSubSeqSum(arr, n, i+1, K);
     return l+r;
 }
+
+void combinationSum(int i, int arr[], int K, vector<int> &combs, int n)
+{
+    //base case
+    if(i>=n)
+    {
+        if(K==0)
+        {
+            //print the combs
+            for(auto i: combs)
+                cout<<i<<" ";
+            if(!combs.size()) cout<<"[]";
+            cout<<endl;
+        }
+        return;
+    }
+
+    //recursive call and small work
+    
+    //include the element
+    if(K>=arr[i])
+    {
+        combs.push_back(arr[i]);
+        combinationSum(i, arr, K-arr[i], combs, n);
+        combs.pop_back();
+    }
+    
+    //do not include the element
+    combinationSum(i+1, arr, K, combs, n);
+
+}
 int main()
 {
     int arr[7] = {1, 2, 3, 4, 5, 6, 7};
     vector<int> subseq;
-    cout<<countSubSeqSum(arr, 7, 0, 8)<<endl;
+    combinationSum(0, arr, 3, subseq, 7);
 }
