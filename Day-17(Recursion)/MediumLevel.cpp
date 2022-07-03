@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -111,9 +112,48 @@ void combinationSum(int i, int arr[], int K, vector<int> &combs, int n)
     combinationSum(i+1, arr, K, combs, n);
 
 }
+
+void findCombinationsII(int index, vector<int> &candidates, int target,int n, vector<int> &ds, vector<vector<int>> &ans)
+{
+    //base case
+    if(target==0)
+    {
+        ans.push_back(ds);
+        return;
+    }
+
+    //recursive call and small work
+    for(int i=index; i<n-1; i++)
+    {
+        if(i>index && candidates[i]==candidates[i-1]) continue;
+
+        if(candidates[i]>target) break;
+
+        ds.push_back(candidates[i]);
+        findCombinationsII(i+1, candidates, target-candidates[i], n, ds, ans);
+        ds.pop_back();
+    }
+}
+vector<vector<int>> combinationSum2(vector<int> &candidates, int target)
+{
+    vector<vector<int>> ans;
+    vector<int> ds;
+    sort(candidates.begin(), candidates.end());
+    findCombinationsII(0, candidates, target, candidates.size(), ds, ans);
+    return ans;
+}
 int main()
 {
-    int arr[7] = {1, 2, 3, 4, 5, 6, 7};
-    vector<int> subseq;
-    combinationSum(0, arr, 3, subseq, 7);
+    vector<int> arr = {1, 2, 3, 4};
+    int target = 4;
+    vector<vector<int>> ans = combinationSum2(arr, target);
+    for(int i=0; i<ans.size(); i++)
+    {
+        for(int j=0; j<ans[i].size(); j++)
+        {
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
 }
