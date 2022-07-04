@@ -82,6 +82,8 @@ int countSubSeqSum(int arr[], int n, int i, int K)
     return l+r;
 }
 
+
+//Problem 4: Print all the possible combinations whose sum is equal to K
 void combinationSum(int i, int arr[], int K, vector<int> &combs, int n)
 {
     //base case
@@ -113,6 +115,8 @@ void combinationSum(int i, int arr[], int K, vector<int> &combs, int n)
 
 }
 
+
+//Problem: 5 Return all the unique combinations whose sum is equal to target (K)
 void findCombinationsII(int index, vector<int> &candidates, int target,int n, vector<int> &ds, vector<vector<int>> &ans)
 {
     //base case
