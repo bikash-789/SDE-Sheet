@@ -146,17 +146,41 @@ vector<vector<int>> combinationSum2(vector<int> &candidates, int target)
     findCombinationsII(0, candidates, target, candidates.size(), ds, ans);
     return ans;
 }
+void findSubsetsII(vector<vector<int>> &ans, vector<int> &arr, int n, vector<int> &ds, int indx)
+{
+    ans.push_back(ds);
+
+    //recursive call and small work
+    for(int i=indx; i<n; i++)
+    {
+        if(i>indx && arr[i] == arr[i-1]) continue;
+        ds.push_back(arr[i]);
+        findSubsetsII(ans, arr, n, ds, i+1);
+        ds.pop_back();
+    }
+}
+
+vector<vector<int>> subsetsII(vector<int> &arr, int n)
+{
+    vector<vector<int>> ans;
+    vector<int> ds;
+    sort(arr.begin(), arr.end());
+    findSubsetsII(ans, arr, n, ds, 0);
+    return ans;
+}
+
 int main()
 {
-    vector<int> arr = {1, 2, 3, 4};
+    vector<int> arr = {1, 1, 3};
     int target = 4;
-    vector<vector<int>> ans = combinationSum2(arr, target);
+    vector<vector<int>> ans = subsetsII(arr, 3);
     for(int i=0; i<ans.size(); i++)
     {
         for(int j=0; j<ans[i].size(); j++)
         {
             cout<<ans[i][j]<<" ";
         }
+        if(!ans[i].size()) cout<<"[]";
         cout<<endl;
     }
 
