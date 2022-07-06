@@ -106,7 +106,7 @@ void combinationSum(int i, int arr[], int K, vector<int> &combs, int n)
     if(K>=arr[i])
     {
         combs.push_back(arr[i]);
-        combinationSum(i, arr, K-arr[i], combs, n);
+        combinationSum(i, arr, K-arr[i], combs, n);  //the element can be included any no. of times
         combs.pop_back();
     }
     
@@ -129,11 +129,17 @@ void findCombinationsII(int index, vector<int> &candidates, int target,int n, ve
     //recursive call and small work
     for(int i=index; i<n-1; i++)
     {
+        //if the start element is equal to current 'i-th' element, avoid it
         if(i>index && candidates[i]==candidates[i-1]) continue;
 
+        //if the element is greater than target, it cannot be included. So break the loop, since 
+        //array is sorted, no more smaller element can be found.
         if(candidates[i]>target) break;
 
+        //else, the above case, we can include it 
         ds.push_back(candidates[i]);
+
+        //since each element can be included only once, so move 'indx' to 'i+1'
         findCombinationsII(i+1, candidates, target-candidates[i], n, ds, ans);
         ds.pop_back();
     }
@@ -146,6 +152,8 @@ vector<vector<int>> combinationSum2(vector<int> &candidates, int target)
     findCombinationsII(0, candidates, target, candidates.size(), ds, ans);
     return ans;
 }
+
+//Problem: 6 Generate unique subsets for the given array
 void findSubsetsII(vector<vector<int>> &ans, vector<int> &arr, int n, vector<int> &ds, int indx)
 {
     ans.push_back(ds);
