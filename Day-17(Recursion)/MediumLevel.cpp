@@ -156,7 +156,7 @@ vector<vector<int>> combinationSum2(vector<int> &candidates, int target)
 //Problem: 6 Generate unique subsets for the given array
 void findSubsetsII(vector<vector<int>> &ans, vector<int> &arr, int n, vector<int> &ds, int indx)
 {
-    ans.push_back(ds);
+    ans.push_back(ds); //this line means that after each iteration, the subset would be generated and stored in 'ds', therefore we can push it in our 'ans' array.
 
     //recursive call and small work
     for(int i=indx; i<n; i++)
