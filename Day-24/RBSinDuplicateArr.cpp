@@ -14,6 +14,7 @@ int findDuplicatePivotIndex(vector<int> &arr)
     {
         int mid = start + (end-start)/2;
 
+        //Checking if arr[mid] is pivot element or not
         if(mid < end && arr[mid] > arr[mid+1])
         {
             return mid;
