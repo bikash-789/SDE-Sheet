@@ -32,6 +32,7 @@ int findRotationCount(vector<int> &arr)
 {
     return findPivotIndex(arr)+1;
 }
+
 int main()
 {
     int n, temp;
