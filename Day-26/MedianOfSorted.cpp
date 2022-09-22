@@ -52,7 +52,7 @@ double median(vector<int> a, vector<int> b)
 int main()
 {
     int n1,n2;
-    cin>>n1;
+    cin>>n1>>n2;
     vector<int> nums1, nums2;
     for(int i=0; i<n1; i++)
     {
@@ -60,7 +60,6 @@ int main()
         cin>>temp1;
         nums1.push_back(temp1);
     }
-    cin>>n2;
     for(int i=0; i<n2; i++)
     {
         int temp2;
