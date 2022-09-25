@@ -3,41 +3,44 @@
 
 using namespace std;
 
-bool isPossible(int mid, vector<int> &time, int n)
+typedef long long ll;
+                 
+bool isPossible(ll mid, vector<int> &time, int n)
 {
-    int dayLimit = 0;
-    int daysLeft = 0;
+    ll dayLimit = 0;
+    int dayCount = 1;
     for(int i=0; i<time.size(); i++)
     {
-        if(time[i] > mid) return false;
-        if((dayLimit + time[i]) > mid)
+        if((ll)(time[i]) > mid) return false;
+        if((dayLimit + (ll)(time[i])) <= mid)
         {
-            dayLimit = time[i];
-            daysLeft++;
+            dayLimit += (ll)(time[i]);
          }
-        else dayLimit += time[i];
+        else {
+            dayCount++;
+            if(dayCount > n || time[i]>mid) return false;
+            dayLimit = (ll)(time[i]);
+        }
     }
-    if(daysLeft > (n-1)) return false;
     return true;
 }
 long long ayushGivesNinjatest(int n, int m, vector<int> time) 
 {	
 	// Write your code here.
-    int l=time[0], h=0;
+    ll low=time[0], high=0;
     for(int i=0; i<m; i++)
     {
-        l = min(l, time[i]);
-        h += time[i];
+        low = min(low, (ll)(time[i]));
+        high += (ll)(time[i]);
     }
     
-    int low = l, high = h;
-    int ans = -1;
+    ll ans = -1;
     while(low<=high)
     {
-        //low to high is the time limit ayush have
+        //low to high is the time limit ayush can have
         
         //let's bound his time limit to [low+high/2] a day
-        int mid = (low+high) >> 1;
+        ll mid = (low+high) >> 1;
         
         //now ask if he can complete the syllabus in 'n' days
         if(isPossible(mid, time, n))
@@ -45,7 +48,7 @@ long long ayushGivesNinjatest(int n, int m, vector<int> time)
             ans = mid;
             high = mid-1;
         }
-        else low = mid+1;
+        else low = mid+1; //else he needs to increase the time limit
     }
-    return (long long)(ans);
+    return ans;
 }
