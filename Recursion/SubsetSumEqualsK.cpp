@@ -9,6 +9,10 @@ void findSubsets(vector<int> arr, vector<int> subset, int index, int K)
         // K becomes zero, which means subset sum if equal to K
         if (K == 0)
         {
+            if(!subset.size())
+            {
+                cout<<"[]"<<endl;
+            }
             // print the subset
             for (int i = 0; i < subset.size(); i++)
             {
