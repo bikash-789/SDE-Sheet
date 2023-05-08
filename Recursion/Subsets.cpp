@@ -4,7 +4,7 @@ using namespace std;
 void generateSubsets(vector<int> arr, vector<int> subsets, int index)
 {
     // base case
-    if(index == arr.size()-1)
+    if(index == arr.size())
     {
         if(subsets.size()==0)
         {
@@ -18,17 +18,20 @@ void generateSubsets(vector<int> arr, vector<int> subsets, int index)
         cout<<endl;
         return;
     }
+    else
+    {
 
-    
-    // include the current element pointed by index
-    subsets.push_back(arr[index]);
-    // recursive call
-    generateSubsets(arr, subsets, index+1);
+        // include the current element pointed by index
+        subsets.push_back(arr[index]);
+        // recursive call
+        generateSubsets(arr, subsets, index+1);
 
-    // do not include the current element pointed by index
-    subsets.pop_back();
-    // recursive call
-    generateSubsets(arr, subsets, index+1);
+
+        // exclude the current element pointed by index
+        subsets.pop_back();
+        // recursive call
+        generateSubsets(arr, subsets, index+1);
+    }
 }
 int main()
 {
