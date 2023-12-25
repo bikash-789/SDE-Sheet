@@ -2,3 +2,18 @@
 a.out
 */output
 */output/*
+
+
+
+# Include .cpp files in all directories
+!**/*.cpp
+**/*.txt
+
+
+# Ignore compiled executables
+**/*.out
+*.exe
+
+# Ignore object files
+**/*.o
+**/*.obj
