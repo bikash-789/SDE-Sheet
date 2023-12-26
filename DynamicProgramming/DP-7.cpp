@@ -8,7 +8,10 @@ int uniquePaths(int m, int n) {
 	{
 		return 1;
 	}
-
+	if(m<0 || n<0)
+	{
+		return 0;
+	}
 	// recursive call
 	int left = uniquePaths(m, n-1);
 	int up = uniquePaths(m-1, n);
@@ -26,3 +29,4 @@ int main()
 	cin>>m>>n;
 	cout<<uniquePaths(m-1,n-1)<<endl;
 }
+
