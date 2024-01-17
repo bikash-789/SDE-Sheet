@@ -31,11 +31,12 @@ void insertionSort(vector<int> &arr, int n)
 
 void selectionSort(vector<int> &arr, int n)
 {
-	// go and find the min element in the array
+	
 	int minIndex = 0;
 	for(int i=0; i<n; i++)
 	{
 		minIndex = i;
+		// go and find the min element in the array
 		for(int j=i+1; j<n; j++)
 		{
 			if(arr[j] < arr[minIndex])
@@ -43,6 +44,7 @@ void selectionSort(vector<int> &arr, int n)
 				minIndex = j;
 			}
 		}
+		// and finally swap the min elem with the min place
 		swap(arr[i], arr[minIndex]);
 	}
 }
@@ -70,10 +72,10 @@ int main()
 	{
 		cin>>arr[i];
 	}
-	// bubbleSort(arr, n);
-	// print(arr, n);
-	// insertionSort(arr, n);
-	// print(arr, n);
+	bubbleSort(arr, n);
+	print(arr, n);
+	insertionSort(arr, n);
+	print(arr, n);
 	selectionSort(arr, n);
 	print(arr, n);
 }
